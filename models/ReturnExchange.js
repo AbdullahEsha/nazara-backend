@@ -7,6 +7,7 @@ const ReturnExchangeSchema = new Schema(
     // all issues of the product in description
     issue: {
       type: String,
+      required: true,
     },
     imageUrl: [{ type: String }],
     user: {

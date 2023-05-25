@@ -7,10 +7,13 @@ const CategorySchema = new Schema(
     //category name
     name: {
       type: String,
+      trim: true,
+      required: true,
     },
     //category is draft or not
     status: {
       type: String,
+      required: true,
     },
   },
   { timestamps: true }

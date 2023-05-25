@@ -6,18 +6,23 @@ const ProductSchema = new Schema(
   {
     sku: {
       type: String,
+      trim: true,
+      required: true,
     },
     productName: {
       type: String,
+      required: true,
     },
     regularPrice: {
       type: Number,
+      required: true,
     },
     salePrice: {
       type: Number,
     },
     quantity: {
       type: String,
+      required: true,
     },
     color: [{ type: String }],
     size: [{ type: String }],

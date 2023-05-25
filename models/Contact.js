@@ -6,12 +6,15 @@ const ContactSchema = new Schema(
   {
     name: {
       type: String,
+      required: true,
     },
     phone: {
       type: String,
+      required: true,
     },
     message: {
       type: String,
+      required: true,
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
