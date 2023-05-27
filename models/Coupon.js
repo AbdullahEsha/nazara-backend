@@ -4,20 +4,42 @@ const Schema = mongoose.Schema;
 
 const CouponSchema = new Schema(
   {
-    // Coupon code
-    code: {
+    name: {
       type: String,
-      trim: true,
       required: true,
     },
-    // discount in percentage
-    discount: {
-      type: mongoose.Types.Decimal128,
-      trim: true,
+    promoCode: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    expires: {
+      type: Date,
       required: true,
     },
-    // coupon availability controle
-    status: {
+    freeShipping: {
+      type: Boolean,
+      default: false,
+    },
+    discountType: {
+      type: String,
+      enum: ["percentage", "amount"],
+      default: "percentage",
+    },
+    percentageOff: {
+      type: Number,
+      min: 0,
+      max: 100,
+    },
+    amountOff: {
+      type: Number,
+      min: 0,
+    },
+    minimumPurchaseAmount: {
+      type: Number,
+      default: 0,
+    },
+    image: {
       type: String,
       required: true,
     },

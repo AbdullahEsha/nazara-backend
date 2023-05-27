@@ -12,15 +12,17 @@ const makeSKU = (length) => {
 };
 
 module.exports.getProductData = async (req, res) => {
-  await Product.find({})
-    .then((product) => {
-      res
-        .status(200)
-        .json({ status: "success", total: product.length, data: product });
-    })
-    .catch((err) => {
-      res.status(422).json({ error: err });
+  try {
+    const product = await Product.find({});
+    res
+      .status(200)
+      .json({ status: "success", total: product.length, data: product });
+  } catch (err) {
+    res.status(422).json({
+      status: "failed 🔴",
+      message: err,
     });
+  }
 };
 
 module.exports.createProduct = async (req, res) => {
@@ -102,10 +104,10 @@ module.exports.updateProduct = async (req, res) => {
 };
 module.exports.deleteProduct = async (req, res) => {
   try {
-    const product = await Product.findByIdAndDelete(req.body._id);
+    const product = await Product.findByIdAndDelete(req.body.id);
 
     if (!product) {
-      return `Product Id: ${req.body._id} not found`;
+      return `Product Id: ${req.body.id} not found`;
     }
 
     res.status(200).json({

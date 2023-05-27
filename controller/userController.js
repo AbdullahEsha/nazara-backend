@@ -4,14 +4,16 @@ const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
 const bcrypt = require("bcryptjs");
 
-module.exports.getUserData = (req, res) => {
-  User.find()
-    .then((user) => {
-      res.status(200).json({ user: user });
-    })
-    .catch((err) => {
-      res.status(422).json({ error: err });
+module.exports.getUserData = async (req, res) => {
+  try {
+    const user = await User.find({});
+    res.status(200).json({ status: "success", total: user.length, data: user });
+  } catch (err) {
+    res.status(422).json({
+      status: "failed 🔴",
+      message: err,
     });
+  }
 };
 
 module.exports.createUser = async (req, res) => {
