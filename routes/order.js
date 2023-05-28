@@ -4,9 +4,9 @@ const routerOrder = express.Router();
 const orderController = require("../controller/orderController");
 
 routerOrder.get("/get/all", orderController.getOrderData);
-routerOrder.get("/get/:id", contactController);
-routerOrder.post("/post/new", contactController.createCategory);
-routerOrder.patch("/update/:id", contactController.updateCategory);
-routerOrder.delete("/delete/:id", contactController.deleteCategory);
+routerOrder.get("/get/:id", orderController.getOrderById);
+routerOrder.post("/post/new", orderController.createOrder);
+routerOrder.patch("/update/:id", orderController.updateOrder);
+routerOrder.delete("/delete/:id", orderController.deleteOrder);
 
 module.exports = routerOrder;

@@ -20,7 +20,7 @@ module.exports.getCategoryById = async (req, res) => {
     }
     res.status(200).json({
       status: "success",
-      data: cart,
+      data: category,
     });
   } catch (err) {
     res.status(422).json({
@@ -56,7 +56,7 @@ module.exports.updateCategory = async (req, res) => {
     }
     res.status(200).json({
       status: "success",
-      data: cart,
+      data: category,
     });
   } catch (err) {
     res.status(422).json({
