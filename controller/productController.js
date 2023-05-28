@@ -26,7 +26,7 @@ module.exports.getProductData = async (req, res) => {
 };
 
 module.exports.createProduct = async (req, res) => {
-  const slug = Slugify(req.body.name, {
+  const slug = Slugify(req.body.productName, {
     lower: true,
     strict: true,
     replacement: "-",
@@ -57,9 +57,9 @@ module.exports.createProduct = async (req, res) => {
 
 module.exports.getProductById = async (req, res) => {
   try {
-    const product = await Product.findById(req.params._id);
+    const product = await Product.findById(req.params.id);
     if (!product) {
-      return `Product Id: ${req.params._id} not found`;
+      return `Product Id: ${req.params.id} not found`;
     }
     res.status(200).json({
       status: "success",
@@ -83,13 +83,13 @@ module.exports.updateProduct = async (req, res) => {
   req.body.slug = slug;
 
   try {
-    const product = await Product.findByIdAndUpdate(req.params._id, req.body, {
+    const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     });
 
     if (!product) {
-      return `Product Id: ${req.params._id} not found`;
+      return `Product Id: ${req.params.id} not found`;
     }
     res.status(200).json({
       status: "success",

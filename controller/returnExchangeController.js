@@ -16,7 +16,7 @@ module.exports.getReturnExchangeById = async (req, res) => {
   try {
     const returnExchange = await ReturnExchange.findById(req.params.id);
     if (!returnExchange) {
-      return `ReturnExchange Id: ${req.params._id} not found!`;
+      return `ReturnExchange Id: ${req.params.id} not found!`;
     }
     res.status(200).json({
       status: "success",
@@ -50,11 +50,11 @@ module.exports.createReturnExchange = async (req, res) => {
 module.exports.updateReturnExchange = async (req, res) => {
   try {
     const returnExchange = await ReturnExchange.findByIdAndUpdate(
-      req.body._id,
+      req.body.id,
       req.body
     );
     if (!returnExchange) {
-      return `ReturnExchange Id: ${req.params._id} not found!`;
+      return `ReturnExchange Id: ${req.params.id} not found!`;
     }
     res.status(200).json({
       status: "success",
@@ -70,9 +70,9 @@ module.exports.updateReturnExchange = async (req, res) => {
 
 module.exports.deleteReturnExchange = async (req, res) => {
   try {
-    const returnExchange = await ReturnExchange.findByIdAndDelete(req.body._id);
+    const returnExchange = await ReturnExchange.findByIdAndDelete(req.body.id);
     if (!returnExchange) {
-      return `ReturnExchange Id: ${req.params._id} not found!`;
+      return `ReturnExchange Id: ${req.params.id} not found!`;
     }
     res.status(200).json({
       status: "success",

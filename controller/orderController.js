@@ -2,7 +2,20 @@ const Order = require("../models/Order");
 
 module.exports.getOrderData = async (req, res) => {
   try {
-    const order = await Order.find({});
+    const order = await Order.find({})
+      .populate({
+        path: "user",
+        select: "_id fullName email phone refund",
+      })
+      .populate({
+        path: "product",
+        select:
+          "_id productName regularPrice salePrice quantity slug category imageUrl",
+      })
+      .populate({
+        path: "sizeChart",
+        select: "_id sleeveLength chest waist hip pantLength",
+      });
     res
       .status(200)
       .json({ status: "success", total: order.length, data: order });
@@ -16,7 +29,20 @@ module.exports.getOrderData = async (req, res) => {
 
 module.exports.getOrderById = async (req, res) => {
   try {
-    const order = await Order.findById(req.params.id);
+    const order = await Order.findById(req.params.id)
+      .populate({
+        path: "user",
+        select: "_id fullName email phone refund",
+      })
+      .populate({
+        path: "product",
+        select:
+          "_id productName regularPrice salePrice quantity slug category imageUrl",
+      })
+      .populate({
+        path: "sizeChart",
+        select: "_id sleeveLength chest waist hip pantLength",
+      });
     if (!order) {
       return `Order Id: ${req.params._id} not found`;
     }
@@ -68,9 +94,9 @@ module.exports.updateOrder = async (req, res) => {
 
 module.exports.deleteOrder = async (req, res) => {
   try {
-    const order = await Order.findByIdAndDelete(req.body._id);
+    const order = await Order.findByIdAndDelete(req.body.id);
     if (!order) {
-      return `Order Id: ${req.params._id} not found`;
+      return `Order Id: ${req.params.id} not found`;
     }
     res.status(200).json({
       status: "success",

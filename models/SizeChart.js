@@ -4,20 +4,78 @@ const Schema = mongoose.Schema;
 
 const SizeChartSchema = new Schema(
   {
-    sleeveLength: {
-      type: mongoose.Types.Decimal128,
+    topType: {
+      type: String,
     },
-    chest: {
-      type: mongoose.Types.Decimal128,
+    bottomType: {
+      type: String,
     },
-    waist: {
-      type: mongoose.Types.Decimal128,
+    note: {
+      type: String,
     },
-    hip: {
-      type: mongoose.Types.Decimal128,
+    tops: {
+      chest: {
+        type: Number,
+      },
+      waist: {
+        type: Number,
+      },
+      hip: {
+        type: Number,
+      },
+      end: {
+        type: Number,
+      },
+      sholulder: {
+        type: Number,
+      },
+      armHole: {
+        type: Number,
+      },
+      sleeveLength: {
+        type: Number,
+      },
+      muscle: {
+        type: Number,
+      },
+      handOpening: {
+        type: Number,
+      },
+      length: {
+        type: Number,
+      },
+      slit: {
+        type: Number,
+      },
+      neckDeepf: {
+        type: Number,
+      },
+      neckDeepb: {
+        type: Number,
+      },
+      halfBody: {
+        type: Number,
+      },
     },
-    pantLength: {
-      type: mongoose.Types.Decimal128,
+    bottom: {
+      length: {
+        type: Number,
+      },
+      waist: {
+        type: Number,
+      },
+      hip: {
+        type: Number,
+      },
+      thigh: {
+        type: Number,
+      },
+      knee: {
+        type: Number,
+      },
+      legOpening: {
+        type: Number,
+      },
     },
   },
   { timestamps: true }

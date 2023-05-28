@@ -20,17 +20,21 @@ module.exports.createUser = async (req, res) => {
   try {
     req.body.password = await bcrypt.hash(req.body.password, 10);
     req.body.userType = "user";
-    const user = await User.create(req.body);
+    await User.create(req.body);
     res.status(200).json({
       status: "success",
-      data: {
-        user,
-      },
     });
   } catch (err) {
-    res.status(422).json({
-      status: "failed 🔴",
-      message: err,
-    });
+    if (err.keyPattern.email < 1) {
+      res.status(422).json({
+        status: "failed 🔴",
+        message: err,
+      });
+    } else {
+      res.status(422).json({
+        status: "Already registered with this email 🔴",
+        message: err,
+      });
+    }
   }
 };

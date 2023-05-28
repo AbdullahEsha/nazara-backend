@@ -19,14 +19,15 @@ const UserSchema = new Schema(
       type: String,
       required: [true, "please enter a password"],
       minlength: [6, "password must be of 6 characters"],
+      select: false,
     },
     phone: {
       type: String,
       required: [true, "please enter your phone number"],
     },
-    // refundable amount available for customer
+    // if refundable amount available for customer
     refund: {
-      type: mongoose.Types.Decimal128,
+      type: Number,
     },
     imageUrl: {
       type: String,

@@ -18,7 +18,7 @@ module.exports.getCouponById = async (req, res) => {
   try {
     const coupon = await Coupon.findById(req.params.id);
     if (!coupon) {
-      return `Coupon Id: ${req.params._id} not found`;
+      return `Coupon Id: ${req.params.id} not found`;
     }
     res.status(200).json({
       status: "success",
@@ -49,13 +49,13 @@ module.exports.createCoupon = async (req, res) => {
 
 module.exports.updateCoupon = async (req, res) => {
   try {
-    const coupon = await Coupon.findByIdAndUpdate(req.body._id, req.body, {
+    const coupon = await Coupon.findByIdAndUpdate(req.body.id, req.body, {
       new: true, // Return the updated document
       runValidators: true, // Validate the data before updating
     });
 
     if (!coupon) {
-      return `Coupon Id: ${req.params._id} not found`;
+      return `Coupon Id: ${req.params.id} not found`;
     }
     res.status(200).json({
       status: "success",
@@ -71,9 +71,9 @@ module.exports.updateCoupon = async (req, res) => {
 
 module.exports.deleteCoupon = async (req, res) => {
   try {
-    const coupon = await Coupon.findByIdAndDelete(req.body._id);
+    const coupon = await Coupon.findByIdAndDelete(req.body.id);
     if (!coupon) {
-      return `Coupon Id: ${req.params._id} not found`;
+      return `Coupon Id: ${req.params.id} not found`;
     }
     res.status(200).json({
       status: "success",

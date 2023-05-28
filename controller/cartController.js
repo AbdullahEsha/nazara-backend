@@ -2,7 +2,16 @@ const Cart = require("../models/Cart");
 
 module.exports.getCartData = async (req, res) => {
   try {
-    const cart = await Cart.find({});
+    const cart = await Cart.find({})
+      .populate({
+        path: "product",
+        select:
+          "_id productName regularPrice salePrice quantity slug category imageUrl",
+      })
+      .populate({
+        path: "user",
+        select: "_id fullName email phone refund",
+      });
     res.status(200).json({ status: "success", total: cart.length, data: cart });
   } catch (err) {
     res.status(422).json({
@@ -14,9 +23,18 @@ module.exports.getCartData = async (req, res) => {
 
 module.exports.getCartById = async (req, res) => {
   try {
-    const cart = await Cart.findById(req.params.id);
+    const cart = await Cart.findById(req.params.id)
+      .populate({
+        path: "product",
+        select:
+          "_id productName regularPrice salePrice quantity slug category imageUrl",
+      })
+      .populate({
+        path: "user",
+        select: "_id fullName email phone refund",
+      });
     if (!cart) {
-      return `Cart Id: ${req.params._id} not found!`;
+      return `Cart Id: ${req.params.id} not found!`;
     }
     res.status(200).json({
       status: "success",
@@ -49,10 +67,10 @@ module.exports.createCart = async (req, res) => {
 
 module.exports.updateCart = async (req, res) => {
   try {
-    const cart = await Cart.findByIdAndUpdate(req.body._id);
+    const cart = await Cart.findByIdAndUpdate(req.body.id);
 
     if (!cart) {
-      return `Cart Id: ${req.params._id} not found!`;
+      return `Cart Id: ${req.params.id} not found!`;
     }
     res.status(200).json({
       status: "success",
@@ -68,9 +86,9 @@ module.exports.updateCart = async (req, res) => {
 
 module.exports.deleteCart = async (req, res) => {
   try {
-    const cart = await Cart.findByIdAndDelete(req.body._id);
+    const cart = await Cart.findByIdAndDelete(req.body.id);
     if (!cart) {
-      return `Cart Id: ${req.params._id} not found!`;
+      return `Cart Id: ${req.params.id} not found!`;
     }
     res.status(200).json({
       status: "success",

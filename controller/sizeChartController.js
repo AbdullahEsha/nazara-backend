@@ -16,7 +16,7 @@ module.exports.getSizeChartById = async (req, res) => {
   try {
     const sizeChart = await SizeChart.findById(req.params.id);
     if (!sizeChart) {
-      return `SizeChart Id: ${req.params._id} not found!`;
+      return `SizeChart Id: ${req.params.id} not found!`;
     }
     res.status(200).json({
       status: "success",
@@ -49,9 +49,9 @@ module.exports.createSizeChart = async (req, res) => {
 
 module.exports.updateSizeChart = async (req, res) => {
   try {
-    const sizeChart = await SizeChart.findByIdAndUpdate(req.body._id, req.body);
+    const sizeChart = await SizeChart.findByIdAndUpdate(req.body.id, req.body);
     if (!sizeChart) {
-      return `SizeChart Id: ${req.params._id} not found!`;
+      return `SizeChart Id: ${req.params.id} not found!`;
     }
     res.status(200).json({
       status: "success",
@@ -67,9 +67,9 @@ module.exports.updateSizeChart = async (req, res) => {
 
 module.exports.deleteSizeChart = async (req, res) => {
   try {
-    const sizeChart = await SizeChart.findByIdAndDelete(req.body._id);
+    const sizeChart = await SizeChart.findByIdAndDelete(req.body.id);
     if (!sizeChart) {
-      return `SizeChart Id: ${req.params._id} not found!`;
+      return `SizeChart Id: ${req.params.id} not found!`;
     }
     res.status(200).json({
       status: "success",

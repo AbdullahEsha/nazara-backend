@@ -16,7 +16,7 @@ module.exports.getCategoryById = async (req, res) => {
   try {
     const category = await Category.findById(req.params.id);
     if (!category) {
-      return `Category Id: ${req.params._id} not found!`;
+      return `Category Id: ${req.params.id} not found!`;
     }
     res.status(200).json({
       status: "success",
@@ -49,10 +49,10 @@ module.exports.createCategory = async (req, res) => {
 
 module.exports.updateCategory = async (req, res) => {
   try {
-    const category = await Category.findByIdAndUpdate(req.body._id);
+    const category = await Category.findByIdAndUpdate(req.body.id);
 
     if (!category) {
-      return `Category Id: ${req.params._id} not found!`;
+      return `Category Id: ${req.params.id} not found!`;
     }
     res.status(200).json({
       status: "success",
@@ -68,9 +68,9 @@ module.exports.updateCategory = async (req, res) => {
 
 module.exports.deleteCategory = async (req, res) => {
   try {
-    const category = await Category.findByIdAndDelete(req.body._id);
+    const category = await Category.findByIdAndDelete(req.body.id);
     if (!category) {
-      return `Category Id: ${req.params._id} not found!`;
+      return `Category Id: ${req.params.id} not found!`;
     }
     res.status(200).json({
       status: "success",

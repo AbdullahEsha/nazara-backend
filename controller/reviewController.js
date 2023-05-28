@@ -49,9 +49,9 @@ module.exports.createReview = async (req, res) => {
 
 module.exports.updateReview = async (req, res) => {
   try {
-    const review = await Review.findByIdAndUpdate(req.body._id, req.body);
+    const review = await Review.findByIdAndUpdate(req.body.id, req.body);
     if (!Review) {
-      return `Review Id: ${req.params._id} not found!`;
+      return `Review Id: ${req.params.id} not found!`;
     }
     res.status(200).json({
       status: "success",
@@ -67,9 +67,9 @@ module.exports.updateReview = async (req, res) => {
 
 module.exports.deleteReview = async (req, res) => {
   try {
-    const review = await Review.findByIdAndDelete(req.body._id);
+    const review = await Review.findByIdAndDelete(req.body.id);
     if (!review) {
-      return `Review Id: ${req.params._id} not found!`;
+      return `Review Id: ${req.params.id} not found!`;
     }
     res.status(200).json({
       status: "success",

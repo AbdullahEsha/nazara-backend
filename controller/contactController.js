@@ -2,7 +2,10 @@ const Contact = require("../models/Contact");
 
 module.exports.getContactData = async (req, res) => {
   try {
-    const contact = await Contact.find({});
+    const contact = await Contact.find({}).populate({
+      path: "user",
+      select: "_id fullName email phone refund",
+    });
     res.status(200).json({ status: "success", data: contact });
   } catch (err) {
     res.status(422).json({
@@ -14,9 +17,12 @@ module.exports.getContactData = async (req, res) => {
 
 module.exports.getContactById = async (req, res) => {
   try {
-    const contact = await Contact.findById(req.params.id);
+    const contact = await Contact.findById(req.params.id).populate({
+      path: "user",
+      select: "_id fullName email phone refund",
+    });
     if (!contact) {
-      return `Contact Id: ${req.params._id} not found!`;
+      return `Contact Id: ${req.params.id} not found!`;
     }
     res.status(200).json({
       status: "success",
@@ -32,12 +38,9 @@ module.exports.getContactById = async (req, res) => {
 
 module.exports.createContact = async (req, res) => {
   try {
-    const Contact = await Contact.create(req.body);
+    await Contact.create(req.body);
     res.status(200).json({
       status: "success",
-      data: {
-        Contact,
-      },
     });
   } catch (err) {
     res.status(422).json({
@@ -49,9 +52,9 @@ module.exports.createContact = async (req, res) => {
 
 module.exports.updateContact = async (req, res) => {
   try {
-    const contact = await Contact.findByIdAndUpdate(req.body._id, req.body);
+    const contact = await Contact.findByIdAndUpdate(req.body.id, req.body);
     if (!contact) {
-      return `Contact Id: ${req.params._id} not found!`;
+      return `Contact Id: ${req.params.id} not found!`;
     }
     res.status(200).json({
       status: "success",
@@ -67,9 +70,9 @@ module.exports.updateContact = async (req, res) => {
 
 module.exports.deleteContact = async (req, res) => {
   try {
-    const contact = await Contact.findByIdAndDelete(req.body._id);
+    const contact = await Contact.findByIdAndDelete(req.body.id);
     if (!contact) {
-      return `Contact Id: ${req.params._id} not found!`;
+      return `Contact Id: ${req.params.id} not found!`;
     }
     res.status(200).json({
       status: "success",
