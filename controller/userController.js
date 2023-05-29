@@ -38,3 +38,48 @@ module.exports.createUser = async (req, res) => {
     }
   }
 };
+
+module.exports.loginUser = async (req, res) => {
+  const { email, password, loginTypes } = req.body;
+  if (!email) {
+    return "Please provide email!";
+  }
+  const user = await User.findOne({ email });
+  if (!user) {
+    return "User Not Found!";
+  }
+  try {
+    if (loginTypes === "social") {
+      const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+
+      res.status(200).json({
+        status: "success",
+        token,
+      });
+    } else {
+      if (!password) {
+        return "Please provide email and password!";
+      }
+      const validPass = await bcrypt.compare(password, user.password);
+      if (!validPass) {
+        return "Invalid Password!";
+      }
+      const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+
+      // res.cookie('jwt', token, {
+      //   expires: new Date(
+      //     Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+      //   ),
+      //   httpOnly: true,
+      //   // secure: process.env.NODE_ENV === 'production',
+      //   secure: false,
+      // });
+      // console.log(process.env.NODE_ENV);
+
+      res.status(200).json({
+        status: "success",
+        token,
+      });
+    }
+  } catch {}
+};

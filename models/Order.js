@@ -10,8 +10,8 @@ const OrderSchema = new Schema(
       trim: true,
       required: true,
     },
-    // coupon/voucher _id, if was available
-    discount: {
+    // coupon code, if was available
+    discountCode: {
       type: String,
       trim: true,
     },
