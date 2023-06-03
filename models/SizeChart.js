@@ -26,7 +26,7 @@ const SizeChartSchema = new Schema(
       end: {
         type: Number,
       },
-      sholulder: {
+      shoulder: {
         type: Number,
       },
       armHole: {

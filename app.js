@@ -11,6 +11,8 @@ const routerProduct = require("./routes/product");
 const routerReturnExchange = require("./routes/returnExchange");
 const routerReview = require("./routes/review");
 const routerSizeChart = require("./routes/sizeChart");
+const routerSubCategory = require("./routes/subCategory");
+const routerSubscriber = require("./routes/subscriber");
 const routerUser = require("./routes/user");
 
 const dbConnect = require("./utils/dbConn");
@@ -27,6 +29,8 @@ app.use("/product", routerProduct);
 app.use("/return-exchange", routerReturnExchange);
 app.use("/review", routerReview);
 app.use("/size-chart", routerSizeChart);
+app.use("/sub-category", routerSubCategory);
+app.use("/subscriber", routerSubscriber);
 app.use("/user", routerUser);
 
 module.exports = app;

@@ -41,7 +41,7 @@ const UserSchema = new Schema(
 );
 UserSchema.path("email").validate((value) => {
   if (!value.includes("@")) {
-    throw new Error("Please enter a valid email");
+    return "Please enter a valid email! 🔴";
   }
 });
 

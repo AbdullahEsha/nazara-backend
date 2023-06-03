@@ -13,7 +13,15 @@ const makeSKU = (length) => {
 
 module.exports.getProductData = async (req, res) => {
   try {
-    const product = await Product.find({});
+    const product = await Product.find({})
+      .populate({
+        path: "category",
+        select: "_id name status",
+      })
+      .populate({
+        path: "subCategory",
+        select: "_id name status",
+      });
     res
       .status(200)
       .json({ status: "success", total: product.length, data: product });
@@ -57,7 +65,15 @@ module.exports.createProduct = async (req, res) => {
 
 module.exports.getProductById = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id)
+      .populate({
+        path: "category",
+        select: "_id name status",
+      })
+      .populate({
+        path: "subCategory",
+        select: "_id name status",
+      });
     if (!product) {
       return `Product Id: ${req.params.id} not found`;
     }

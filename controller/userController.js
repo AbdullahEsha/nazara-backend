@@ -44,7 +44,7 @@ module.exports.loginUser = async (req, res) => {
   if (!email) {
     return "Please provide email!";
   }
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email }).select("password");
   if (!user) {
     return "User Not Found!";
   }

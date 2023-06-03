@@ -33,7 +33,12 @@ const ProductSchema = new Schema(
       type: String,
     },
     category: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+    },
+    subCategory: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "SubCategory",
     },
     imageUrl: [{ type: String }],
     status: {
