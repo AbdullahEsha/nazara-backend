@@ -50,7 +50,7 @@ module.exports.createReturnExchange = async (req, res) => {
 module.exports.updateReturnExchange = async (req, res) => {
   try {
     const returnExchange = await ReturnExchange.findByIdAndUpdate(
-      req.body.id,
+      req.params.id,
       req.body
     );
     if (!returnExchange) {

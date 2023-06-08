@@ -40,6 +40,10 @@ const ProductSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "SubCategory",
     },
+    promotion: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Promotion",
+    },
     imageUrl: [{ type: String }],
     status: {
       type: String,

@@ -47,7 +47,10 @@ module.exports.createSubscriber = async (req, res) => {
 
 module.exports.updateSubscriber = async (req, res) => {
   try {
-    const subscriber = await Subscriber.findByIdAndUpdate(req.body.id);
+    const subscriber = await Subscriber.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
 
     if (!subscriber) {
       return `Subscriber Id: ${req.params.id} not found!`;

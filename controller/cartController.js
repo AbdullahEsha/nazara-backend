@@ -67,7 +67,7 @@ module.exports.createCart = async (req, res) => {
 
 module.exports.updateCart = async (req, res) => {
   try {
-    const cart = await Cart.findByIdAndUpdate(req.body.id);
+    const cart = await Cart.findByIdAndUpdate(req.params.id, req.body);
 
     if (!cart) {
       return `Cart Id: ${req.params.id} not found!`;

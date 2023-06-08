@@ -47,7 +47,10 @@ module.exports.createSubCategory = async (req, res) => {
 
 module.exports.updateSubCategory = async (req, res) => {
   try {
-    const subCategory = await SubCategory.findByIdAndUpdate(req.body.id);
+    const subCategory = await SubCategory.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
 
     if (!subCategory) {
       return `SubCategory Id: ${req.params.id} not found!`;

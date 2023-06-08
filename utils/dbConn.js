@@ -7,7 +7,7 @@ const dbConnect = () => {
   mongoose
     .connect(connUri)
     .then(() => {
-      console.log("db connected.");
+      console.log("db connected successfully.");
     })
     .catch((err) => console.error(`mongodb connection error: ${err}`));
 };

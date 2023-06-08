@@ -75,10 +75,10 @@ module.exports.createOrder = async (req, res) => {
 
 module.exports.updateOrder = async (req, res) => {
   try {
-    const order = await Order.findByIdAndUpdate(req.body._id, req.body);
+    const order = await Order.findByIdAndUpdate(req.params.id, req.body);
 
     if (!order) {
-      return `Order Id: ${req.params._id} not found`;
+      return `Order Id: ${req.params.id} not found`;
     }
     res.status(200).json({
       status: "success",

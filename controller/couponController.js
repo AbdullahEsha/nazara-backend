@@ -49,7 +49,7 @@ module.exports.createCoupon = async (req, res) => {
 
 module.exports.updateCoupon = async (req, res) => {
   try {
-    const coupon = await Coupon.findByIdAndUpdate(req.body.id, req.body, {
+    const coupon = await Coupon.findByIdAndUpdate(req.params.id, req.body, {
       new: true, // Return the updated document
       runValidators: true, // Validate the data before updating
     });

@@ -49,7 +49,7 @@ module.exports.createReview = async (req, res) => {
 
 module.exports.updateReview = async (req, res) => {
   try {
-    const review = await Review.findByIdAndUpdate(req.body.id, req.body);
+    const review = await Review.findByIdAndUpdate(req.params.id, req.body);
     if (!Review) {
       return `Review Id: ${req.params.id} not found!`;
     }

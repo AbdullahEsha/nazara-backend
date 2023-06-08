@@ -49,7 +49,10 @@ module.exports.createSizeChart = async (req, res) => {
 
 module.exports.updateSizeChart = async (req, res) => {
   try {
-    const sizeChart = await SizeChart.findByIdAndUpdate(req.body.id, req.body);
+    const sizeChart = await SizeChart.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
     if (!sizeChart) {
       return `SizeChart Id: ${req.params.id} not found!`;
     }

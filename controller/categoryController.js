@@ -14,7 +14,8 @@ module.exports.getCategoryData = async (req, res) => {
 
 module.exports.getCategoryById = async (req, res) => {
   try {
-    const category = await Category.findById(req.params.id);
+    const id = req.params.id;
+    const category = await Category.findById(id);
     if (!category) {
       return `Category Id: ${req.params.id} not found!`;
     }
@@ -49,7 +50,10 @@ module.exports.createCategory = async (req, res) => {
 
 module.exports.updateCategory = async (req, res) => {
   try {
-    const category = await Category.findByIdAndUpdate(req.body.id);
+    const category = await Category.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
 
     if (!category) {
       return `Category Id: ${req.params.id} not found!`;
