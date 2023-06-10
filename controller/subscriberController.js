@@ -49,7 +49,11 @@ module.exports.updateSubscriber = async (req, res) => {
   try {
     const subscriber = await Subscriber.findByIdAndUpdate(
       req.params.id,
-      req.body
+      req.body,
+      {
+        new: true, // Return the updated document
+        runValidators: true, // Validate the data before updating
+      }
     );
 
     if (!subscriber) {

@@ -100,8 +100,8 @@ module.exports.updateProduct = async (req, res) => {
 
   try {
     const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
+      new: true, // Return the updated document
+      runValidators: true, // Validate the data before updating
     });
 
     if (!product) {

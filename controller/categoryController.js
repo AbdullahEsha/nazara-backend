@@ -51,8 +51,8 @@ module.exports.createCategory = async (req, res) => {
 module.exports.updateCategory = async (req, res) => {
   try {
     const category = await Category.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
+      new: true, // Return the updated document
+      runValidators: true, // Validate the data before updating
     });
 
     if (!category) {

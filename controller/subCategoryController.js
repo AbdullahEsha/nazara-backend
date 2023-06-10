@@ -49,7 +49,11 @@ module.exports.updateSubCategory = async (req, res) => {
   try {
     const subCategory = await SubCategory.findByIdAndUpdate(
       req.params.id,
-      req.body
+      req.body,
+      {
+        new: true, // Return the updated document
+        runValidators: true, // Validate the data before updating
+      }
     );
 
     if (!subCategory) {

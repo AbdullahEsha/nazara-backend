@@ -51,7 +51,11 @@ module.exports.updateSizeChart = async (req, res) => {
   try {
     const sizeChart = await SizeChart.findByIdAndUpdate(
       req.params.id,
-      req.body
+      req.body,
+      {
+        new: true, // Return the updated document
+        runValidators: true, // Validate the data before updating
+      }
     );
     if (!sizeChart) {
       return `SizeChart Id: ${req.params.id} not found!`;

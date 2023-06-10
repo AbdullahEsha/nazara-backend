@@ -51,7 +51,11 @@ module.exports.updateReturnExchange = async (req, res) => {
   try {
     const returnExchange = await ReturnExchange.findByIdAndUpdate(
       req.params.id,
-      req.body
+      req.body,
+      {
+        new: true, // Return the updated document
+        runValidators: true, // Validate the data before updating
+      }
     );
     if (!returnExchange) {
       return `ReturnExchange Id: ${req.params.id} not found!`;

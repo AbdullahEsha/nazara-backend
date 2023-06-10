@@ -75,7 +75,10 @@ module.exports.createOrder = async (req, res) => {
 
 module.exports.updateOrder = async (req, res) => {
   try {
-    const order = await Order.findByIdAndUpdate(req.params.id, req.body);
+    const order = await Order.findByIdAndUpdate(req.params.id, req.body, {
+      new: true, // Return the updated document
+      runValidators: true, // Validate the data before updating
+    });
 
     if (!order) {
       return `Order Id: ${req.params.id} not found`;

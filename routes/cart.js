@@ -9,7 +9,7 @@ router
   .post(cartController.createCart);
 
 router
-  .route("/")
+  .route("/:id")
   .get(cartController.getCartById)
   .patch(cartController.updateCart)
   .delete(cartController.deleteCart);

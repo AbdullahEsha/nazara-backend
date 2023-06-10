@@ -49,7 +49,10 @@ module.exports.createReview = async (req, res) => {
 
 module.exports.updateReview = async (req, res) => {
   try {
-    const review = await Review.findByIdAndUpdate(req.params.id, req.body);
+    const review = await Review.findByIdAndUpdate(req.params.id, req.body, {
+      new: true, // Return the updated document
+      runValidators: true, // Validate the data before updating
+    });
     if (!Review) {
       return `Review Id: ${req.params.id} not found!`;
     }

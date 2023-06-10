@@ -20,11 +20,19 @@ const ProductSchema = new Schema(
     salePrice: {
       type: Number,
     },
-    quantity: {
-      type: String,
-      required: true,
-    },
-    color: [{ type: String }],
+    //variant is dynamic and quantity is depending on color
+    variant: [
+      {
+        color: {
+          type: String,
+          required: true,
+        },
+        quantity: {
+          type: Number,
+          required: true,
+        },
+      },
+    ],
     size: [{ type: String }],
     slug: {
       type: String,

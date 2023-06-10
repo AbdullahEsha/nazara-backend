@@ -52,7 +52,10 @@ module.exports.createContact = async (req, res) => {
 
 module.exports.updateContact = async (req, res) => {
   try {
-    const contact = await Contact.findByIdAndUpdate(req.params.id, req.body);
+    const contact = await Contact.findByIdAndUpdate(req.params.id, req.body, {
+      new: true, // Return the updated document
+      runValidators: true, // Validate the data before updating
+    });
     if (!contact) {
       return `Contact Id: ${req.params.id} not found!`;
     }

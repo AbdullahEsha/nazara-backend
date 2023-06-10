@@ -52,7 +52,11 @@ module.exports.updatePromotion = async (req, res) => {
   try {
     const promotion = await Promotion.findByIdAndUpdate(
       req.params.id,
-      req.body
+      req.body,
+      {
+        new: true, // Return the updated document
+        runValidators: true, // Validate the data before updating
+      }
     );
 
     if (!promotion) {
