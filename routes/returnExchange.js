@@ -1,27 +1,17 @@
 const express = require("express");
-const routerReturnExchange = express.Router();
+const router = express.Router();
 
 const returnExchangeController = require("../controller/returnExchangeController");
 
-routerReturnExchange.get(
-  "/get/all",
-  returnExchangeController.getReturnExchangeData
-);
-routerReturnExchange.get(
-  "/get/:id",
-  returnExchangeController.getReturnExchangeById
-);
-routerReturnExchange.post(
-  "/post/new",
-  returnExchangeController.createReturnExchange
-);
-routerReturnExchange.patch(
-  "/update/:id",
-  returnExchangeController.updateReturnExchange
-);
-routerReturnExchange.delete(
-  "/delete/:id",
-  returnExchangeController.deleteReturnExchange
-);
+router
+  .route("/")
+  .get(returnExchangeController.getReturnExchangeData)
+  .post(returnExchangeController.createReturnExchange);
 
-module.exports = routerReturnExchange;
+router
+  .route("/:id")
+  .get(returnExchangeController.getReturnExchangeById)
+  .patch(returnExchangeController.updateReturnExchange)
+  .delete(returnExchangeController.deleteReturnExchange);
+
+module.exports = router;

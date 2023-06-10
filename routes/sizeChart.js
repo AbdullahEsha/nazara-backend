@@ -1,12 +1,17 @@
 const express = require("express");
-const routerSizeChart = express.Router();
+const router = express.Router();
 
 const sizeChartController = require("../controller/sizeChartController");
 
-routerSizeChart.get("/get/all", sizeChartController.getSizeChartData);
-routerSizeChart.get("/get/:id", sizeChartController.getSizeChartById);
-routerSizeChart.post("/post/new", sizeChartController.createSizeChart);
-routerSizeChart.patch("/update/:id", sizeChartController.updateSizeChart);
-routerSizeChart.delete("/delete/:id", sizeChartController.deleteSizeChart);
+router
+  .route("/")
+  .get(sizeChartController.getSizeChartData)
+  .post(sizeChartController.createSizeChart);
 
-module.exports = routerSizeChart;
+router
+  .route("/:id")
+  .get(sizeChartController.getSizeChartById)
+  .patch(sizeChartController.updateSizeChart)
+  .delete(sizeChartController.deleteSizeChart);
+
+module.exports = router;

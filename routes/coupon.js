@@ -1,8 +1,8 @@
 const express = require("express");
-const routerCoupon = express.Router();
+const router = express.Router();
 
 const couponController = require("../controller/couponController");
 
-routerCoupon.get("/get/all", couponController.getCouponData);
+router.get("/", couponController.getCouponData);
 
-module.exports = routerCoupon;
+module.exports = router;

@@ -1,12 +1,17 @@
 const express = require("express");
-const routerPromotion = express.Router();
+const router = express.Router();
 
 const promotionController = require("../controller/promotionController");
 
-routerPromotion.get("/get/all", promotionController.getPromotionData);
-routerPromotion.get("/get/:id", promotionController.getPromotionById);
-routerPromotion.post("/post/new", promotionController.createPromotion);
-routerPromotion.patch("/update/:id", promotionController.updatePromotion);
-routerPromotion.delete("/delete/:id", promotionController.deletePromotion);
+router
+  .route("/")
+  .get(promotionController.getPromotionData)
+  .post(promotionController.createPromotion);
 
-module.exports = routerPromotion;
+router
+  .route("/")
+  .get(promotionController.getPromotionById)
+  .patch(promotionController.updatePromotion)
+  .delete(promotionController.deletePromotion);
+
+module.exports = router;
