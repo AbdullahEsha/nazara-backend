@@ -14,10 +14,13 @@ const routerSizeChart = require("./routes/sizeChart");
 const routerSubCategory = require("./routes/subCategory");
 const routerSubscriber = require("./routes/subscriber");
 const routerUser = require("./routes/user");
-
+const cors = require('cors');
 const app = express();
 
+//middleware
 app.use(express.json());
+app.use(cors());
+
 app.use("/api/v1/category", routerCategory);
 app.use("/api/v1/product", routerProduct);
 app.use("/api/v1/promotion", routerPromotion);
