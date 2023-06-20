@@ -10,14 +10,22 @@ const OrderSchema = new Schema(
       trim: true,
       required: true,
     },
-    // coupon code, if was available
-    discountCode: {
+    paymentMethod: {
+      type: String,
+      required: true,
+    },
+    shippingAddress: {
+      type: String,
+      required: true,
+    },
+    remark: {
       type: String,
       trim: true,
     },
-    paymentType: {
-      type: String,
-      required: true,
+    // coupon code, if was available
+    discountCode: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Coupon",
     },
     product: {
       type: mongoose.Schema.Types.ObjectId,
@@ -30,6 +38,10 @@ const OrderSchema = new Schema(
     sizeChart: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "SizeChart",
+    },
+    status: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true }
