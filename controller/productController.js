@@ -120,7 +120,7 @@ module.exports.updateProduct = async (req, res) => {
 };
 module.exports.deleteProduct = async (req, res) => {
   try {
-    const product = await Product.findByIdAndDelete(req.body.id);
+    const product = await Product.findByIdAndDelete(req.params.id);
 
     if (!product) {
       return `Product Id: ${req.body.id} not found`;

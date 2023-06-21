@@ -76,7 +76,7 @@ module.exports.updatePromotion = async (req, res) => {
 
 module.exports.deletePromotion = async (req, res) => {
   try {
-    const promotion = await Promotion.findByIdAndDelete(req.body.id);
+    const promotion = await Promotion.findByIdAndDelete(req.params.id);
     if (!promotion) {
       return `Promotion Id: ${req.params.id} not found!`;
     }

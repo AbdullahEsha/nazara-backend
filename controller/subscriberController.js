@@ -73,7 +73,7 @@ module.exports.updateSubscriber = async (req, res) => {
 
 module.exports.deleteSubscriber = async (req, res) => {
   try {
-    const subscriber = await Subscriber.findByIdAndDelete(req.body.id);
+    const subscriber = await Subscriber.findByIdAndDelete(req.params.id);
     if (!subscriber) {
       return `Subscriber Id: ${req.params.id} not found!`;
     }

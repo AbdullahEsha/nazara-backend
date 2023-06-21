@@ -73,7 +73,7 @@ module.exports.updateSubCategory = async (req, res) => {
 
 module.exports.deleteSubCategory = async (req, res) => {
   try {
-    const subCategory = await SubCategory.findByIdAndDelete(req.body.id);
+    const subCategory = await SubCategory.findByIdAndDelete(req.params.id);
     if (!subCategory) {
       return `SubCategory Id: ${req.params.id} not found!`;
     }

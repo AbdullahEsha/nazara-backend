@@ -97,7 +97,7 @@ module.exports.updateOrder = async (req, res) => {
 
 module.exports.deleteOrder = async (req, res) => {
   try {
-    const order = await Order.findByIdAndDelete(req.body.id);
+    const order = await Order.findByIdAndDelete(req.params.id);
     if (!order) {
       return `Order Id: ${req.params.id} not found`;
     }

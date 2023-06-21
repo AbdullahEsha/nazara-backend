@@ -74,7 +74,7 @@ module.exports.updateSizeChart = async (req, res) => {
 
 module.exports.deleteSizeChart = async (req, res) => {
   try {
-    const sizeChart = await SizeChart.findByIdAndDelete(req.body.id);
+    const sizeChart = await SizeChart.findByIdAndDelete(req.params.id);
     if (!sizeChart) {
       return `SizeChart Id: ${req.params.id} not found!`;
     }

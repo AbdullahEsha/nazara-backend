@@ -72,13 +72,13 @@ module.exports.updateCategory = async (req, res) => {
 
 module.exports.deleteCategory = async (req, res) => {
   try {
-    const category = await Category.findByIdAndDelete(req.body.id);
+    const category = await Category.findByIdAndDelete(req.params.id);
     if (!category) {
       return `Category Id: ${req.params.id} not found!`;
     }
     res.status(200).json({
       status: "success",
-      data: null,
+      message: "data deleted successfully"
     });
   } catch (err) {
     res.status(422).json({

@@ -70,7 +70,7 @@ module.exports.updateReview = async (req, res) => {
 
 module.exports.deleteReview = async (req, res) => {
   try {
-    const review = await Review.findByIdAndDelete(req.body.id);
+    const review = await Review.findByIdAndDelete(req.params.id);
     if (!review) {
       return `Review Id: ${req.params.id} not found!`;
     }

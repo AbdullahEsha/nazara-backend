@@ -73,7 +73,7 @@ module.exports.updateContact = async (req, res) => {
 
 module.exports.deleteContact = async (req, res) => {
   try {
-    const contact = await Contact.findByIdAndDelete(req.body.id);
+    const contact = await Contact.findByIdAndDelete(req.params.id);
     if (!contact) {
       return `Contact Id: ${req.params.id} not found!`;
     }

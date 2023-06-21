@@ -74,7 +74,7 @@ module.exports.updateReturnExchange = async (req, res) => {
 
 module.exports.deleteReturnExchange = async (req, res) => {
   try {
-    const returnExchange = await ReturnExchange.findByIdAndDelete(req.body.id);
+    const returnExchange = await ReturnExchange.findByIdAndDelete(req.params.id);
     if (!returnExchange) {
       return `ReturnExchange Id: ${req.params.id} not found!`;
     }

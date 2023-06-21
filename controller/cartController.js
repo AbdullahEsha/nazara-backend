@@ -86,7 +86,7 @@ module.exports.updateCart = async (req, res) => {
 
 module.exports.deleteCart = async (req, res) => {
   try {
-    const cart = await Cart.findByIdAndDelete(req.body.id);
+    const cart = await Cart.findByIdAndDelete(req.params.id);
     if (!cart) {
       return `Cart Id: ${req.params.id} not found!`;
     }
