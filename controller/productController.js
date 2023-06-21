@@ -90,13 +90,14 @@ module.exports.getProductById = async (req, res) => {
 };
 
 module.exports.updateProduct = async (req, res) => {
-  const slug = Slugify(req.body.name, {
-    lower: true,
-    strict: true,
-    replacement: "-",
-  });
-
-  req.body.slug = slug;
+  if (req.body.productName) {
+    const slug = Slugify(req.body.productName, {
+      lower: true,
+      strict: true,
+      replacement: "-",
+    });
+    req.body.slug = slug;
+  }
 
   try {
     const product = await Product.findByIdAndUpdate(req.params.id, req.body, {

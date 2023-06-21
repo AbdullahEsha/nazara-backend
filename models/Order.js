@@ -4,21 +4,32 @@ const Schema = mongoose.Schema;
 
 const OrderSchema = new Schema(
   {
+    paymentId: { type: String },
     // count of products
     quantity: {
       type: Number,
       trim: true,
       required: true,
     },
-    // coupon code, if was available
-    discountCode: {
-      type: String,
-      trim: true,
-    },
-    paymentType: {
+    paymentMethod: {
       type: String,
       required: true,
     },
+    shippingAddress: {
+      street: { type: String, required: true, trim: true },
+      city: { type: String, required: true, trim: true },
+      state: { type: String, required: true, trim: true },
+      country: { type: String, required: true, trim: true },
+      zip: { type: String, required: true, trim: true },
+      phoneNumber: { type: String, required: true, trim: true },
+    },
+    remark: {
+      type: String,
+      trim: true,
+    },
+    totalCost: { type: Number, required: true },
+    // coupon code, if was available
+    coupon: { type: String, default: null },
     product: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Product",
@@ -31,6 +42,8 @@ const OrderSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "SizeChart",
     },
+    paymentStatus: { type: String, required: true },
+    deliveryStatus: { type: String, required: true },
   },
   { timestamps: true }
 );

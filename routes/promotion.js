@@ -9,7 +9,7 @@ router
   .post(promotionController.createPromotion);
 
 router
-  .route("/")
+  .route("/:id")
   .get(promotionController.getPromotionById)
   .patch(promotionController.updatePromotion)
   .delete(promotionController.deletePromotion);
