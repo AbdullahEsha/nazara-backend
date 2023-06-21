@@ -79,7 +79,7 @@ module.exports.deleteSubCategory = async (req, res) => {
     }
     res.status(200).json({
       status: "success",
-      data: null,
+      message: "data deleted successfully",
     });
   } catch (err) {
     res.status(422).json({

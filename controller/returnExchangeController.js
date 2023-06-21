@@ -74,13 +74,15 @@ module.exports.updateReturnExchange = async (req, res) => {
 
 module.exports.deleteReturnExchange = async (req, res) => {
   try {
-    const returnExchange = await ReturnExchange.findByIdAndDelete(req.params.id);
+    const returnExchange = await ReturnExchange.findByIdAndDelete(
+      req.params.id
+    );
     if (!returnExchange) {
       return `ReturnExchange Id: ${req.params.id} not found!`;
     }
     res.status(200).json({
       status: "success",
-      data: null,
+      message: "data deleted successfully",
     });
   } catch (err) {
     res.status(422).json({
